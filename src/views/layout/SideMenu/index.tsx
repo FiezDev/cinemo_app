@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Drawer, Stack, Toolbar, IconButton, Link } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { Drawer, Stack } from "@mui/material";
 
 import SideMenuButton from "./SideMenuButton";
 
@@ -14,12 +13,16 @@ export default function SideMenu() {
       paddingLeft: "24px",
       paddingRight: "24px",
     },
+    logoToolbar: {
+      minHeight: "88px",
+    },
     logo: {
-      maxWidth: "unset",
-      width: "35px",
+      maxWidth: "calc(100% - 30px",
+      width: "70px",
+      height: "auto",
     },
     menuContainer: {
-      paddingTop: "4px",
+      paddingTop: "40px",
     },
   };
 
@@ -36,10 +39,6 @@ export default function SideMenu() {
       variant="permanent"
       anchor="left"
     >
-      <Toolbar style={styles.deskTopToolbar}>
-        <img src="/logo.svg" alt="logo" className="h-5 w-[35px]"></img>
-      </Toolbar>
-
       <Stack style={styles.menuContainer}>
         <SideMenuButton
           label="Movies"
@@ -60,19 +59,6 @@ export default function SideMenu() {
         />
       </Stack>
       <div className="flex-1" />
-      <Link
-        href="https://github.com/sunnykandev/aha-ex2-react-mui-ts-tailwind"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <IconButton
-          className="ml-3 mr-3 mb-5"
-          aria-label="github repository"
-          component="label"
-        >
-          <GitHubIcon fontSize="large" />
-        </IconButton>
-      </Link>
     </Drawer>
   );
 }

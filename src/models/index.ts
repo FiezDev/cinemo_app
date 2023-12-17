@@ -29,3 +29,6 @@ export interface MovieModel {
   trailer_ivx_key: string;
 }
 
+export interface MoviesList {
+  movies: MovieModel[];
+}
