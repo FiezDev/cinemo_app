@@ -42,7 +42,7 @@ export default function SideMenu() {
 
       <Stack style={styles.menuContainer}>
         <SideMenuButton
-          label="Home"
+          label="Movies"
           isActive={
             routeState.pathname === "/home" ||
             routeState.pathname === "/" ||
@@ -53,10 +53,10 @@ export default function SideMenu() {
           pathname="home"
         />
         <SideMenuButton
-          label="Tags"
-          isActive={routeState.pathname === "/tags" ? true : false}
+          label="Favorites"
+          isActive={routeState.pathname === "/fav" ? true : false}
           isBadge={true}
-          pathname="tags"
+          pathname="fav"
         />
       </Stack>
       <div className="flex-1" />

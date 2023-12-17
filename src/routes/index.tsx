@@ -2,8 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Layout from "../views/layout";
 import Home from "../views/pages/home";
-import SearchResult from "../views/pages/searchResult";
-import Tags from "../views/pages/tags";
+import Fav from "../views/pages/fav";
 
 export default function Root() {
   return (
@@ -12,8 +11,7 @@ export default function Root() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-          <Route path="result" element={<SearchResult />} />
-          <Route path="tags" element={<Tags />} />
+          <Route path="fav" element={<Fav />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import friendsSlice from "./friendsSlice";
+import moviesSlice from "./moviesSlice";
 
 const store = configureStore({
   reducer: {
-    friends: friendsSlice.reducer,
+    movies: moviesSlice.reducer,
   },
 });
 

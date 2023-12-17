@@ -4,7 +4,6 @@ import { Divider, Stack, TextField, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
 import CustomSlider from "../../components/CustomSlider";
-import FriendsDrawer from "../../components/FriendsDrawer";
 
 const maxRealValue = 50; // Slider's max value.
 const maxMarkValue = 19; // Slider's length in regular interval count.
@@ -152,7 +151,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <FriendsDrawer />
     </div>
   );
 }
