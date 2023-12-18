@@ -4,7 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { MovieModel } from "../../../models";
+import { MovieModel } from "../../models";
 
 interface MovieCardProps {
   movie: MovieModel;

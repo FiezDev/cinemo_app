@@ -43,17 +43,19 @@ export default function SideMenu() {
         <SideMenuButton
           label="Movies"
           isActive={
-            routeState.pathname === "/home" ||
             routeState.pathname === "/" ||
-            routeState.pathname === "/result"
+            routeState.pathname === "/movie" ||
+            routeState.pathname === "/fav"
               ? true
               : false
           }
-          pathname="home"
+          iconPath="/images/cinema.svg"
+          pathname="movie"
         />
         <SideMenuButton
           label="Favorites"
           isActive={routeState.pathname === "/fav" ? true : false}
+          iconPath="/images/fav.svg"
           isBadge={true}
           pathname="fav"
         />

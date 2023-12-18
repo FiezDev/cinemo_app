@@ -1,3 +1,10 @@
+export interface UserModel {
+  id: string;
+  password: string;
+  isLogin: boolean;
+  hash: string;
+}
+
 export interface MovieModel {
   id: number;
   movieCode: string[];
@@ -26,7 +33,7 @@ export interface MovieModel {
   date_update: string;
   show_buyticket: string;
   trailer_cms_id: string;
-  trailer_ivx_key: string;
+  trailer_ivx_key: string | null;
 }
 
 export interface MoviesList {
