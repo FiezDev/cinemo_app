@@ -18,12 +18,10 @@ export default function Movie() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (movies) {
-      const filtered = movies.filter((movie) =>
-        movie.title_en.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredMovies(filtered);
-    }
+    const filtered = movies.filter((movie) =>
+      movie.title_en.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredMovies(filtered);
   }, [searchQuery, movies]);
 
   const formatMovie = (movie: MovieModel) => ({
