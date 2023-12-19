@@ -8,9 +8,13 @@ import { RootState } from "../../store";
 export default function Layout() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
-  const currentUser = useSelector(
-    (state: RootState) => state.users.currentUser
+  const { currentUser, isLoading } = useSelector(
+    (state: RootState) => state.users
   );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!currentUser && !isLoginPage) {
     return <Navigate to="/login" />;

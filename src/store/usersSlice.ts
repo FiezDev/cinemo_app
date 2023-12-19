@@ -3,10 +3,12 @@ import { UserModel } from "../models";
 
 interface UsersState {
   currentUser: UserModel | null;
+  isLoading: boolean;
 }
 
 const initialState: UsersState = {
   currentUser: null,
+  isLoading: true,
 };
 
 const usersSlice = createSlice({
@@ -26,6 +28,9 @@ const usersSlice = createSlice({
       localStorage.removeItem("user");
       state.currentUser = null;
     },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
+    },
     initializeState(state) {
       const userString = localStorage.getItem("user");
       if (userString) {
@@ -38,10 +43,12 @@ const usersSlice = createSlice({
           state.currentUser = null;
         }
       }
+      state.isLoading = false;
     },
   },
 });
 
-export const { login, logout, initializeState } = usersSlice.actions;
+export const { login, logout, setLoading, initializeState } =
+  usersSlice.actions;
 
 export default usersSlice;
