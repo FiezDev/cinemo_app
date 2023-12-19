@@ -1,8 +1,8 @@
 export interface UserModel {
   id: string;
+  email: string;
   password: string;
   isLogin: boolean;
-  hash: string;
 }
 
 export interface MovieModel {

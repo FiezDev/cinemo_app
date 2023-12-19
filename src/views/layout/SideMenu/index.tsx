@@ -1,34 +1,25 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Stack } from "@mui/material";
-
 import SideMenuButton from "./SideMenuButton";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store";
+import { logout } from "../../../store/usersSlice";
 
 export const DRAWER_WIDTH = 80;
 
 export default function SideMenu() {
-  const routeState = useLocation();
-  const styles = {
-    deskTopToolbar: {
-      minHeight: "88px",
-      paddingLeft: "24px",
-      paddingRight: "24px",
-    },
-    logoToolbar: {
-      minHeight: "88px",
-    },
-    logo: {
-      maxWidth: "calc(100% - 30px",
-      width: "70px",
-      height: "auto",
-    },
-    menuContainer: {
-      paddingTop: "40px",
-    },
+  const dispatch: AppDispatch = useDispatch();
+  const navigation = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigation(`/login`);
   };
+  const routeState = useLocation();
+
   const favorites = useSelector((state: RootState) => state.movies.favorites);
   const hasFavorite = favorites.length > 0;
+
   return (
     <Drawer
       sx={{
@@ -41,14 +32,13 @@ export default function SideMenu() {
       }}
       variant="permanent"
       anchor="left"
+      className="h-full"
     >
-      <Stack style={styles.menuContainer}>
+      <Stack className="pt-10 h-[100vh] flex flex-col gap-5">
         <SideMenuButton
           label="Movies"
           isActive={
-            routeState.pathname === "/" ||
-            routeState.pathname === "/movie" ||
-            routeState.pathname === "/fav"
+            routeState.pathname === "/" || routeState.pathname === "/movie"
               ? true
               : false
           }
@@ -62,8 +52,19 @@ export default function SideMenu() {
           isBadge={hasFavorite}
           pathname="fav"
         />
+
+        <div className="flex-grow" />
+
+        <div onClick={handleLogout}>
+          <SideMenuButton
+            label="Logout"
+            isActive={false}
+            iconPath="/images/logout.svg"
+            isBadge={false}
+            pathname="Logout"
+          />
+        </div>
       </Stack>
-      <div className="flex-1" />
     </Drawer>
   );
 }
