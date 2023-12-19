@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import { Drawer, Stack } from "@mui/material";
 
 import SideMenuButton from "./SideMenuButton";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 export const DRAWER_WIDTH = 80;
 
@@ -25,7 +27,8 @@ export default function SideMenu() {
       paddingTop: "40px",
     },
   };
-
+  const favorites = useSelector((state: RootState) => state.movies.favorites);
+  const hasFavorite = favorites.length > 0;
   return (
     <Drawer
       sx={{
@@ -56,7 +59,7 @@ export default function SideMenu() {
           label="Favorites"
           isActive={routeState.pathname === "/fav" ? true : false}
           iconPath="/images/fav.svg"
-          isBadge={true}
+          isBadge={hasFavorite}
           pathname="fav"
         />
       </Stack>

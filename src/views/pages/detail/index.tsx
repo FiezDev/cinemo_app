@@ -23,13 +23,15 @@ export default function Detail() {
   }
 
   return (
-    <div className="flex w-full justify-around p-5">
-      <img
-        src={movie.poster_url}
-        alt={movie.title_en}
-        className="w-[40%] max-h-[90%]"
-      />
-      <div className="w-[55%] flex flex-col gap-2">
+    <div className="flex flex-col sm:flex-row w-full justify-evenly p-5">
+      <div className="flex justify-center w-full sm:w-[40%] max-h-[80%] mb-4 sm:mb-0">
+        <img
+          src={movie.poster_url}
+          alt={movie.title_en}
+          className="w-auto max-h-full"
+        />
+      </div>
+      <div className="w-full sm:w-[55%] flex flex-col gap-2">
         {movie.trailer && (
           <iframe
             className="w-full h-[480px]"

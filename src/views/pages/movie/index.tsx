@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store";
 import { fetchMovies } from "../../../store/moviesActions";
-import MovieCard from "../../components/MovieCard";
+import { MovieCard } from "../../components/MovieCard";
 import { Stack } from "@mui/material";
 import { MovieModel } from "../../../models";
 import { RootState } from "../../../store";
@@ -18,8 +18,14 @@ export default function Movie() {
   }, [dispatch]);
 
   useEffect(() => {
-    const filtered = movies.filter((movie) =>
-      movie.title_en.toLowerCase().includes(searchQuery.toLowerCase())
+    const searchLower = searchQuery.toLowerCase();
+    const filtered = movies.filter(
+      (movie) =>
+        movie.title_th.toLowerCase().includes(searchLower) ||
+        movie.title_en.toLowerCase().includes(searchLower) ||
+        movie.director.toLowerCase().includes(searchLower) ||
+        movie.actor.toLowerCase().includes(searchLower) ||
+        movie.genre.toLowerCase().includes(searchLower)
     );
     setFilteredMovies(filtered);
   }, [searchQuery, movies]);
@@ -35,10 +41,10 @@ export default function Movie() {
       <Stack spacing={2} className="flex-1 ml-[1px] mt-[1px]">
         <input
           type="text"
-          placeholder="Search movies..."
+          placeholder="Search by Title / Director / Actor / Genre"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className=""
+          className="m-3 p-3 rounded"
         />
         <div className="movies-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
           {filteredMovies.map((movie) => (

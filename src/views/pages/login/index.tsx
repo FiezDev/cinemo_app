@@ -15,7 +15,6 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your login logic here, e.g., calling an API to authenticate the user.
   };
 
   return (

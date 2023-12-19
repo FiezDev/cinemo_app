@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@mui/material";
 
 interface SideMenuButtonProps {
-  iconPath?: string; // Accept the path to the icon as a prop
+  iconPath?: string;
   label?: string;
   isActive?: boolean;
   isBadge?: boolean;
@@ -15,7 +15,7 @@ export default function SideMenuButton({
   isActive = false,
   isBadge = false,
   pathname = "",
-  iconPath = "", // Provide a default value for the iconPath prop
+  iconPath = "",
 }: SideMenuButtonProps) {
   const navigation = useNavigate();
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -29,7 +29,7 @@ export default function SideMenuButton({
     >
       <Badge
         className="menuBadge"
-        color="info"
+        color="primary"
         variant="dot"
         invisible={!isBadge}
       >
@@ -38,7 +38,7 @@ export default function SideMenuButton({
             className={isActive ? "" : "opacity-60"}
             src={iconPath}
             alt="icon"
-            style={{ width: "35px", height: "35px" }} // Set fixed width and height
+            style={{ width: "35px", height: "35px" }}
           />
         )}
       </Badge>

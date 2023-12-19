@@ -1,39 +1,33 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { fetchMovies } from "../../../store/moviesActions";
+import { MovieCard } from "../../components/MovieCard";
+import { Stack } from "@mui/material";
+import { RootState } from "../../../store";
 
-import Api from "../../../service/Api";
-
-export default function Tags() {
-  const navigation = useNavigate();
+export default function Fav() {
+  const dispatch: AppDispatch = useDispatch();
+  const movies = useSelector((state: RootState) => state.movies.movies);
+  const favorites = useSelector((state: RootState) => state.movies.favorites);
 
   useEffect(() => {
-    Api()
-      .get("https://avl-frontend-exam.herokuapp.com/api/tags")
-      .then(() => {})
-      .catch((err) => console.log(err));
-  }, []);
+    if (movies.length === 0) {
+      dispatch(fetchMovies());
+    }
+  }, [dispatch, movies.length]);
+
+  const favoriteMovies = movies.filter((movie) => favorites.includes(movie.id));
 
   return (
-    <div className="w-full flex flex-row">
-      <div className="w-full px-[13px] sm:px-[50px] md:px-[100px] lg:px-[100px] xl:px-[245px] pt-[80px] md:pt-[65px]">
-        <Stack spacing={2}>
-          <div className="md:hidden flex flex-row items-center ml-[12px] md:ml-[-21px] mt-[-63px] mb-[22px]">
-            <ArrowBackIosIcon
-              fontSize="medium"
-              onClick={() => navigation("/")}
-              className="cursor-pointer mr-[10px] h-[24px] text-white"
-            />
-            <Typography className="text-[24px] md:text-[30px]">
-              Home Page
-            </Typography>
-          </div>
-          <Typography className="text-[24px] md:text-[30px] ml-[7px] md:ml-[12px]">
-            Tags
-          </Typography>
-        </Stack>
-      </div>
+    <div className="w-full flex flex-row flex-grow">
+      <Stack spacing={2} className="flex-1 ml-[1px] mt-[1px]">
+        <div className="movies-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+          {favoriteMovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </Stack>
     </div>
   );
 }

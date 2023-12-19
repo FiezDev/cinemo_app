@@ -5,7 +5,6 @@ import { RootState } from "./index";
 import MovieService from "../service/moviesService";
 
 export const movieActions = moviesSlice.actions;
-// In moviesActions.ts
 export const fetchMovies =
   (): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch) => {
     try {

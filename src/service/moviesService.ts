@@ -1,4 +1,3 @@
-// moviesService.ts
 import { MovieModel } from "../models";
 import Api from "./Api";
 
